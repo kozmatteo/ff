@@ -2,6 +2,7 @@ package pl.kozmatteo.finance.domain.report;
 
 import org.junit.jupiter.api.Test;
 import pl.kozmatteo.finance.domain.Money;
+import pl.kozmatteo.finance.domain.report.filter.ExpenseFilter;
 import pl.kozmatteo.finance.trans.model.Expense;
 
 import java.time.LocalDate;
@@ -13,10 +14,9 @@ import static java.util.Collections.singletonList;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static pl.kozmatteo.finance.domain.report.filter.ExpenseFilterBuilder.anExpenseFilter;
 
 /**
- * TODO filtrowanie po kategoriach
- * TODO filtrowanie po datach
  * todo grupowanie po kategoriach
  * TODO sortowanie
  */
@@ -24,9 +24,12 @@ class ExpenditureReportServiceTest {
 
   @Test
   void findNoneExpendituresWhenEmpty() {
-    ExpenditureReport expenditureReport = createService(emptyList()).buildReport
-        ("category");
+    ExpenditureReport expenditureReport = createService(emptyList()).buildReport();
     assertEquals(0, expenditureReport.count());
+  }
+
+  private ExpenditureReportService createService(final List<Expense> expenditures) {
+    return new ExpenditureReportService(expenditures);
   }
 
   @Test
@@ -53,9 +56,12 @@ class ExpenditureReportServiceTest {
         new Expense(Money.of(2.08), "category"),
         new Expense(Money.of(1.66), "category"));
     ExpenditureReportService expenditureReportService = createService(expenditures);
+    ExpenseFilter reportFilter = anExpenseFilter()
+        .withinCategory("category")
+        .build();
 
     // when
-    ExpenditureReport expenditureReport = expenditureReportService.buildReport("category");
+    ExpenditureReport expenditureReport = expenditureReportService.buildReport(reportFilter);
 
     // then
     assertAll(() -> {
@@ -74,19 +80,20 @@ class ExpenditureReportServiceTest {
         new Expense(Money.of(2.08), LocalDate.now().minusDays(1), "category"),
         new Expense(Money.of(1.66), "category"));
     ExpenditureReportService expenditureReportService = createService(expenditures);
+    ExpenseFilter reportFilter = anExpenseFilter()
+        .onDate(LocalDate.now())
+        .build();
 
     // when
-    ExpenditureReport expenditureReport = expenditureReportService.buildReport(LocalDate.now());
+    ExpenditureReport expenditureReport = expenditureReportService.buildReport(reportFilter);
 
     // then
     assertAll(() -> {
       assertEquals(1, expenditureReport.count());
       assertEquals(Money.of(1.66), expenditureReport.sum());
-      assertTrue(expenditureReport.getExpenses().stream().allMatch(e -> LocalDate.now().isEqual(e.getDate())));
+      assertTrue(expenditureReport.getExpenses()
+                                  .stream()
+                                  .allMatch(e -> LocalDate.now().isEqual(e.getDate())));
     });
-  }
-
-  private ExpenditureReportService createService(final List<Expense> expenditures) {
-    return new ExpenditureReportService(expenditures);
   }
 }
