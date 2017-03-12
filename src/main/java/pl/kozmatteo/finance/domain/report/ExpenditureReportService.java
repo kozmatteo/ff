@@ -2,6 +2,7 @@ package pl.kozmatteo.finance.domain.report;
 
 import pl.kozmatteo.finance.trans.model.Expense;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,7 +16,7 @@ public class ExpenditureReportService {
   }
 
   public ExpenditureReport buildReport() {
-    return buildReport(null);
+    return buildReport((String) null);
   }
 
   public ExpenditureReport buildReport(final String category) {
@@ -23,6 +24,13 @@ public class ExpenditureReportService {
                                                  .filter(e -> Objects.equals(e.getCategory(),
                                                      category))
                                                  .collect(toList());
-    return new ExpenditureReport(filteredExpenses, category);
+    return new ExpenditureReport(filteredExpenses);
+  }
+
+  public ExpenditureReport buildReport(final LocalDate expenseDate) {
+    List<Expense> filteredExpenses = expenditures.stream()
+                                                 .filter(e -> expenseDate.isEqual(e.getDate()))
+                                                 .collect(toList());
+    return new ExpenditureReport(filteredExpenses);
   }
 }
