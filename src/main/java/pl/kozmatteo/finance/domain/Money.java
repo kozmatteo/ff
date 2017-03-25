@@ -3,7 +3,7 @@ package pl.kozmatteo.finance.domain;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Money {
+public class Money implements Comparable<Money> {
   private final BigDecimal amount;
 
   public Money(final BigDecimal amount) {
@@ -40,5 +40,15 @@ public class Money {
     return "Money{" +
         "amount=" + amount +
         '}';
+  }
+
+  public Money negative() {
+    BigDecimal negative = BigDecimal.ZERO.subtract(amount.abs());
+    return new Money(negative);
+  }
+
+  @Override
+  public int compareTo(final Money o) {
+    return amount.compareTo(o.amount);
   }
 }

@@ -2,34 +2,34 @@ package pl.kozmatteo.finance.domain.report.filter;
 
 import org.junit.jupiter.api.Test;
 import pl.kozmatteo.finance.domain.Money;
-import pl.kozmatteo.finance.trans.model.Expense;
+import pl.kozmatteo.finance.trans.model.Transaction;
 
-import java.time.LocalDate;
-
+import static java.time.LocalDate.now;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static pl.kozmatteo.finance.domain.report.filter.ExpenseFilterBuilder.anExpenseFilter;
+import static pl.kozmatteo.finance.domain.report.filter.TransactionFilterBuilder.aTransactionFilter;
+import static pl.kozmatteo.finance.trans.model.Transaction.expenseOf;
 
-class ExpenseFilterBuilderTest {
+class TransactionFilterBuilderTest {
   @Test
   void emptyFilterAlwaysReturnTrue() {
-    ExpenseFilter filterBuilder = anExpenseFilter().build();
-    Expense expense = new Expense(Money.of(1));
+    TransactionFilter filterBuilder = aTransactionFilter().build();
+    Transaction expense = expenseOf(Money.of(1));
 
     assertTrue(filterBuilder.test(expense));
   }
 
   @Test
   void differentFilterCanBeApplied() {
-    ExpenseFilter filterBuilder = anExpenseFilter()
+    TransactionFilter filterBuilder = aTransactionFilter()
         .withinCategory("category")
-        .onDate(LocalDate.now())
+        .onDate(now())
         .build();
 
-    Expense expense1 = new Expense(Money.of(1.44), "category");
-    Expense expense2 = new Expense(Money.of(2), "category2");
-    Expense expense3 = new Expense(Money.of(2.5), LocalDate.now().minusDays(1), "category");
+    Transaction expense1 = expenseOf(Money.of(1.44)).category("category");
+    Transaction expense2 = expenseOf(Money.of(2)).category("category2");
+    Transaction expense3 = expenseOf(Money.of(2.5)).onDate(now().minusDays(1)).category("category");
 
     assertAll(() -> {
       assertTrue(filterBuilder.test(expense1));
@@ -40,13 +40,13 @@ class ExpenseFilterBuilderTest {
 
   @Test
   void whenSameFilterIsUsedMultipleTimesUseLastValue() {
-    ExpenseFilter filterBuilder = anExpenseFilter()
+    TransactionFilter filterBuilder = aTransactionFilter()
         .withinCategory("category2")
         .withinCategory("category")
         .build();
 
-    Expense expense1 = new Expense(Money.of(1.44), "category");
-    Expense expense2 = new Expense(Money.of(2), "category2");
+    Transaction expense1 = expenseOf(Money.of(1.44)).category("category");
+    Transaction expense2 = expenseOf(Money.of(2)).category("category2");
 
     assertAll(() -> {
       assertTrue(filterBuilder.test(expense1));
