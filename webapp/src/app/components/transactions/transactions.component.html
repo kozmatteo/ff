@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col col-3">
+      filtering options
+    </div>
+    <div class="col col-9">
+      transactions list
+      <br>
+      <div class="alert alert-info">
+        Transactions: {{ transactions.length }}
+        <br>
+        Total: {{sum() | currency:'PLN':true:'1.2-2'}}
+      </div>
+      <app-transactions-grid [transactions]="transactions"></app-transactions-grid>
+    </div>
+  </div>
+</div>

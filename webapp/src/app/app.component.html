@@ -1,3 +1,20 @@
-<h1>
-  {{title}}
-</h1>
+<header>
+  <div class="alert alert-info">List of all transactions</div>
+</header>
+<div>
+  <nav class="nav nav-tabs">
+    <a class="nav-item nav-link"
+       routerLink="transactions"
+       routerLinkActive="active">
+      Transactions
+    </a>
+  </nav>
+</div>
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>
+<footer class="footer">
+  <div class="container">
+    kozmatteo 2017
+  </div>
+</footer>
