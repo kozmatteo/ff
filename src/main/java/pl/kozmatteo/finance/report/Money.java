@@ -1,4 +1,4 @@
-package pl.kozmatteo.finance.domain;
+package pl.kozmatteo.finance.report;
 
 import java.math.BigDecimal;
 import java.util.Objects;

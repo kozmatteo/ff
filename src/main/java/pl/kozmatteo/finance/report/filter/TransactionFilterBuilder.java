@@ -1,4 +1,4 @@
-package pl.kozmatteo.finance.domain.report.filter;
+package pl.kozmatteo.finance.report.filter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

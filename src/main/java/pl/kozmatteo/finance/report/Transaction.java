@@ -1,6 +1,4 @@
-package pl.kozmatteo.finance.trans.model;
-
-import pl.kozmatteo.finance.domain.Money;
+package pl.kozmatteo.finance.report;
 
 import java.time.LocalDate;
 import java.util.Objects;

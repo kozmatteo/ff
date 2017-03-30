@@ -1,7 +1,4 @@
-package pl.kozmatteo.finance.domain.report;
-
-import pl.kozmatteo.finance.domain.Money;
-import pl.kozmatteo.finance.trans.model.Transaction;
+package pl.kozmatteo.finance.report;
 
 import java.util.List;
 

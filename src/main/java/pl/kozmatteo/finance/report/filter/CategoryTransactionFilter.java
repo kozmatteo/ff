@@ -1,6 +1,6 @@
-package pl.kozmatteo.finance.domain.report.filter;
+package pl.kozmatteo.finance.report.filter;
 
-import pl.kozmatteo.finance.trans.model.Transaction;
+import pl.kozmatteo.finance.report.Transaction;
 
 import java.util.Objects;
 

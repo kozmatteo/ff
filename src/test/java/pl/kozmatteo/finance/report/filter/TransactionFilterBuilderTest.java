@@ -1,15 +1,15 @@
-package pl.kozmatteo.finance.domain.report.filter;
+package pl.kozmatteo.finance.report.filter;
 
 import org.junit.jupiter.api.Test;
-import pl.kozmatteo.finance.domain.Money;
-import pl.kozmatteo.finance.trans.model.Transaction;
+import pl.kozmatteo.finance.report.Money;
+import pl.kozmatteo.finance.report.Transaction;
 
 import static java.time.LocalDate.now;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static pl.kozmatteo.finance.domain.report.filter.TransactionFilterBuilder.aTransactionFilter;
-import static pl.kozmatteo.finance.trans.model.Transaction.expenseOf;
+import static pl.kozmatteo.finance.report.Transaction.expenseOf;
+import static pl.kozmatteo.finance.report.filter.TransactionFilterBuilder.aTransactionFilter;
 
 class TransactionFilterBuilderTest {
   @Test

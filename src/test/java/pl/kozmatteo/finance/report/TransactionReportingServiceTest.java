@@ -1,10 +1,8 @@
-package pl.kozmatteo.finance.domain.report;
+package pl.kozmatteo.finance.report;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.kozmatteo.finance.domain.Money;
-import pl.kozmatteo.finance.domain.report.filter.TransactionFilter;
-import pl.kozmatteo.finance.trans.model.Transaction;
+import pl.kozmatteo.finance.report.filter.TransactionFilter;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,10 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static pl.kozmatteo.finance.domain.report.filter.TransactionFilterBuilder.aTransactionFilter;
-import static pl.kozmatteo.finance.domain.report.filter.TransactionFilterBuilder.anExpenseFilter;
-import static pl.kozmatteo.finance.trans.model.Transaction.expenseOf;
-import static pl.kozmatteo.finance.trans.model.Transaction.incomeOf;
+import static pl.kozmatteo.finance.report.Transaction.expenseOf;
+import static pl.kozmatteo.finance.report.Transaction.incomeOf;
+import static pl.kozmatteo.finance.report.filter.TransactionFilterBuilder.aTransactionFilter;
+import static pl.kozmatteo.finance.report.filter.TransactionFilterBuilder.anExpenseFilter;
 
 /**
  * todo grupowanie po kategoriach / dacie

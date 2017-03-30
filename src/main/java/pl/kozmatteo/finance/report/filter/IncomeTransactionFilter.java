@@ -1,7 +1,7 @@
-package pl.kozmatteo.finance.domain.report.filter;
+package pl.kozmatteo.finance.report.filter;
 
-import pl.kozmatteo.finance.domain.Money;
-import pl.kozmatteo.finance.trans.model.Transaction;
+import pl.kozmatteo.finance.report.Money;
+import pl.kozmatteo.finance.report.Transaction;
 
 public class IncomeTransactionFilter implements TransactionFilter {
 
