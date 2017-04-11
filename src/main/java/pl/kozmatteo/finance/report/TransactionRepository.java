@@ -1,7 +1,8 @@
 package pl.kozmatteo.finance.report;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface TransactionRepository {
-  List<Transaction> findAll();
+@Repository
+public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 }

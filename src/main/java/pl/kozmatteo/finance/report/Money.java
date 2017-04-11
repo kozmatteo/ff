@@ -6,6 +6,10 @@ import java.util.Objects;
 public class Money implements Comparable<Money> {
   private final BigDecimal amount;
 
+  private Money() {
+    this.amount = BigDecimal.ZERO;
+  }
+
   public Money(final BigDecimal amount) {
     this.amount = amount.setScale(2, BigDecimal.ROUND_HALF_EVEN);
   }
@@ -45,6 +49,10 @@ public class Money implements Comparable<Money> {
   public Money negative() {
     BigDecimal negative = BigDecimal.ZERO.subtract(amount.abs());
     return new Money(negative);
+  }
+
+  public BigDecimal getAmount() {
+    return amount;
   }
 
   @Override

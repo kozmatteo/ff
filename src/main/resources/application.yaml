@@ -1,0 +1,21 @@
+spring:
+  devtools:
+    livereload:
+      enabled: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    password: zaq12WSX
+    username: postgres
+
+  jpa:
+    database: postgresql
+    hibernate:
+      naming:
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      ddl-auto: update
+    show-sql: true
+    generate-ddl: true
+  h2:
+    console:
+      enabled: true

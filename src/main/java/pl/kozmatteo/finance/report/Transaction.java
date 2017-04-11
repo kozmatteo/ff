@@ -1,12 +1,34 @@
 package pl.kozmatteo.finance.report;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.Objects;
 
+@Entity
+@Table(name = "t_trans")
 public class Transaction {
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRANSACTION_SEQ")
+  @SequenceGenerator(sequenceName = "trans_seq", allocationSize = 1, name = "TRANSACTION_SEQ")
+  @Column(name = "transaction_id")
+  private Long transactionId;
+
   private LocalDate date = LocalDate.now();
+
+  @Embedded
   private Money amount;
+
   private String category;
+
+  private Transaction() {
+  }
 
   public Transaction(final LocalDate date, final String category, final Money amount) {
     if (date == null) {
@@ -51,5 +73,9 @@ public class Transaction {
     Objects.requireNonNull(date);
     this.date = date;
     return this;
+  }
+
+  public Long getTransactionId() {
+    return transactionId;
   }
 }

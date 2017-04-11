@@ -1,11 +1,13 @@
 package pl.kozmatteo.finance.report;
 
+import org.springframework.stereotype.Service;
 import pl.kozmatteo.finance.report.filter.TransactionFilter;
 
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+@Service
 public class TransactionReportingService {
   private final TransactionRepository transactionRepository;
 

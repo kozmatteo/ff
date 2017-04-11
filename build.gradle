@@ -1,21 +1,23 @@
 group 'pl.kozmatteo'
 version '0.1-SNAPSHOT'
 
-apply plugin: 'groovy'
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'org.junit.platform.gradle.plugin'
-
-sourceCompatibility = 1.8
-
 buildscript {
-    repositories{
+    repositories {
         mavenCentral()
     }
     dependencies {
         classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M3'
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE'
     }
 }
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.junit.platform.gradle.plugin'
+apply plugin: 'org.springframework.boot'
+
+
 
 compileTestJava {
     sourceCompatibility = 1.8
@@ -25,6 +27,7 @@ compileTestJava {
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -33,4 +36,12 @@ dependencies {
     testCompile "org.mockito:mockito-all:1.10.19"
     testCompile "org.junit.jupiter:junit-jupiter-api:5.0.0-M3"
     testRuntime "org.junit.jupiter:junit-jupiter-engine:5.0.0-M3"
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.springframework.boot:spring-boot-devtools'
+    compile group: 'org.postgresql', name: 'postgresql', version: '9.4-1201-jdbc41'
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    testCompile 'com.github.sbrannen:spring-test-junit5:1.0.0.M3'
 }
