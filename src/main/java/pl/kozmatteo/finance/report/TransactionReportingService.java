@@ -1,7 +1,7 @@
 package pl.kozmatteo.finance.report;
 
 import org.springframework.stereotype.Service;
-import pl.kozmatteo.finance.report.filter.TransactionFilter;
+import pl.kozmatteo.finance.support.Specification;
 
 import java.util.List;
 
@@ -19,9 +19,9 @@ public class TransactionReportingService {
     return new TransactionReport(transactionRepository.findAll());
   }
 
-  public TransactionReport buildReport(final TransactionFilter filter) {
+  public TransactionReport buildReport(final Specification<Transaction> specification) {
     List<Transaction> filteredExpenses = transactionRepository.findAll().stream()
-                                                              .filter(filter)
+                                                              .filter(specification::isSatisfiedBy)
                                                               .collect(toList());
     return new TransactionReport(filteredExpenses);
   }

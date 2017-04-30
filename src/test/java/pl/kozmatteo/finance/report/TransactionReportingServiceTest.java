@@ -2,7 +2,7 @@ package pl.kozmatteo.finance.report;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.kozmatteo.finance.report.filter.TransactionFilter;
+import pl.kozmatteo.finance.support.Specification;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,8 +17,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static pl.kozmatteo.finance.report.Transaction.expenseOf;
 import static pl.kozmatteo.finance.report.Transaction.incomeOf;
-import static pl.kozmatteo.finance.report.filter.TransactionFilterBuilder.aTransactionFilter;
-import static pl.kozmatteo.finance.report.filter.TransactionFilterBuilder.anExpenseFilter;
+import static pl.kozmatteo.finance.report.filter.TransactionSpecificationBuilder.aTransactionFilter;
+import static pl.kozmatteo.finance.report.filter.TransactionSpecificationBuilder.anExpenseFilter;
 
 /**
  * todo grupowanie po kategoriach / dacie
@@ -70,7 +70,7 @@ class TransactionReportingServiceTest {
         expenseOf(Money.of(2.08)).category("category"),
         expenseOf(Money.of(1.66)).category("category"));
     when(transactionRepository.findAll()).thenReturn(transactions);
-    TransactionFilter reportFilter = anExpenseFilter()
+    Specification<Transaction> reportFilter = anExpenseFilter()
         .withinCategory("category")
         .build();
 
@@ -95,7 +95,7 @@ class TransactionReportingServiceTest {
         incomeOf(Money.of(1.44)).category("category"),
         expenseOf(Money.of(1.66)).category("category"));
     when(transactionRepository.findAll()).thenReturn(transactions);
-    TransactionFilter reportFilter = aTransactionFilter()
+    Specification<Transaction> reportFilter = aTransactionFilter()
         .onDate(LocalDate.now())
         .build();
 

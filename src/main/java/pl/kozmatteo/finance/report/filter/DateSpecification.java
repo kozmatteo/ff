@@ -1,18 +1,19 @@
 package pl.kozmatteo.finance.report.filter;
 
 import pl.kozmatteo.finance.report.Transaction;
+import pl.kozmatteo.finance.support.Specification;
 
 import java.time.LocalDate;
 
-class DateTransactionFilter implements TransactionFilter {
+class DateSpecification implements Specification<Transaction> {
   private final LocalDate date;
 
-  public DateTransactionFilter(final LocalDate date) {
+  public DateSpecification(final LocalDate date) {
     this.date = date;
   }
 
   @Override
-  public boolean test(final Transaction transaction) {
+  public boolean isSatisfiedBy(final Transaction transaction) {
     return transaction.getDate().isEqual(date);
   }
 }
