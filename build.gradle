@@ -6,7 +6,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M3'
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M4'
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE'
     }
 }
@@ -34,8 +34,8 @@ dependencies {
     compile "org.codehaus.groovy:groovy-all:2.4.1"
     testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
     testCompile "org.mockito:mockito-all:1.10.19"
-    testCompile "org.junit.jupiter:junit-jupiter-api:5.0.0-M3"
-    testRuntime "org.junit.jupiter:junit-jupiter-engine:5.0.0-M3"
+    testCompile "org.junit.jupiter:junit-jupiter-api:5.0.0-M4"
+    testRuntime "org.junit.jupiter:junit-jupiter-engine:5.0.0-M4"
     compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 
     compile 'org.springframework.boot:spring-boot-starter-web'
@@ -43,5 +43,5 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-devtools'
     compile group: 'org.postgresql', name: 'postgresql', version: '9.4-1201-jdbc41'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
-    testCompile 'com.github.sbrannen:spring-test-junit5:1.0.0.M3'
+    testCompile 'com.github.sbrannen:spring-test-junit5:1.0.0.M4'
 }
