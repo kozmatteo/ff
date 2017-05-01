@@ -1,9 +1,9 @@
-package pl.kozmatteo.finance.report;
+package pl.kozmatteo.finance.transactions;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Money implements Comparable<Money> {
+public final class Money implements Comparable<Money> {
   private final BigDecimal amount;
 
   private Money() {

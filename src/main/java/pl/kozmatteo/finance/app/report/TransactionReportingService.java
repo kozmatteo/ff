@@ -1,11 +1,12 @@
-package pl.kozmatteo.finance.report;
+package pl.kozmatteo.finance.app.report;
 
 import org.springframework.stereotype.Service;
 import pl.kozmatteo.finance.support.Specification;
+import pl.kozmatteo.finance.transactions.Transaction;
+import pl.kozmatteo.finance.transactions.TransactionReport;
+import pl.kozmatteo.finance.transactions.TransactionRepository;
 
 import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 @Service
 public class TransactionReportingService {
@@ -16,13 +17,11 @@ public class TransactionReportingService {
   }
 
   public TransactionReport buildReport() {
-    return new TransactionReport(transactionRepository.findAll());
+    return buildReport(Specification.DEFAULT);
   }
 
   public TransactionReport buildReport(final Specification<Transaction> specification) {
-    List<Transaction> filteredExpenses = transactionRepository.findAll().stream()
-                                                              .filter(specification::isSatisfiedBy)
-                                                              .collect(toList());
+    List<Transaction> filteredExpenses = transactionRepository.findAll(specification);
     return new TransactionReport(filteredExpenses);
   }
 }

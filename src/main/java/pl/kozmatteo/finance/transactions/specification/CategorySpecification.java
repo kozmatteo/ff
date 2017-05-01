@@ -1,11 +1,11 @@
-package pl.kozmatteo.finance.report.filter;
+package pl.kozmatteo.finance.transactions.specification;
 
-import pl.kozmatteo.finance.report.Transaction;
 import pl.kozmatteo.finance.support.Specification;
+import pl.kozmatteo.finance.transactions.Transaction;
 
 import java.util.Objects;
 
-class CategorySpecification implements Specification<Transaction> {
+public class CategorySpecification implements Specification<Transaction> {
 
   private final String category;
 

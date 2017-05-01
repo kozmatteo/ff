@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"pl.kozmatteo.finance.report"})
+@ComponentScan(basePackages = {"pl.kozmatteo.finance.transactions", "pl.kozmatteo.finance.app"})
 public class App {
   public static void main(String[] args) {
     SpringApplication.run(App.class, args);

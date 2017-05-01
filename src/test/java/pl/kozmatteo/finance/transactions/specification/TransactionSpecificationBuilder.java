@@ -1,7 +1,7 @@
-package pl.kozmatteo.finance.report.filter;
+package pl.kozmatteo.finance.transactions.specification;
 
-import pl.kozmatteo.finance.report.Transaction;
 import pl.kozmatteo.finance.support.Specification;
+import pl.kozmatteo.finance.transactions.Transaction;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package pl.kozmatteo.finance.report;
+package pl.kozmatteo.finance.transactions;
 
 import pl.kozmatteo.finance.support.Specification;
 

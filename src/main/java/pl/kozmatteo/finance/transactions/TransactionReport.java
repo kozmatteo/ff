@@ -1,4 +1,4 @@
-package pl.kozmatteo.finance.report;
+package pl.kozmatteo.finance.transactions;
 
 import java.util.List;
 

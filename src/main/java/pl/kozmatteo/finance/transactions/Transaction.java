@@ -1,4 +1,4 @@
-package pl.kozmatteo.finance.report;
+package pl.kozmatteo.finance.transactions;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
